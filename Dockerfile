@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10 \
     && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
-    && apt clean autoclan && apt autoremove -y \
+    && apt clean autoclean && apt autoremove -y \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ENV CXX="g++-10"
