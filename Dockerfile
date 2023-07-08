@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL description="A small Linux image with gcc-11 and vcpkg"
+LABEL description="A small Linux image with gcc-12 and vcpkg"
 LABEL maintainer="adam@adamgetchell.org"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ccache \
     cmake \
     curl \
-    g++-11 \
+    g++-12 \
     git \
     libtool-bin \
     # Required to build CMake
@@ -32,14 +32,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     yasm \
     zip \
     --fix-missing \
-    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11 \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 --slave /usr/bin/g++ g++ /usr/bin/g++-12 --slave /usr/bin/gcov gcov /usr/bin/gcov-12 \
     && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean autoclean && apt autoremove -y \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-ENV CXX="g++-11"
-ENV CC="gcc-11"
+ENV CXX="g++-12"
+ENV CC="gcc-12"
 
 # Setup vcpkg in /vcpkg
 RUN git clone https://github.com/Microsoft/vcpkg.git \
